@@ -2,31 +2,63 @@ namespace Eksamen2;
 
 public class PriceCalculator
 {
-    public static void CheapPriceCalculator(Dictionary<char, Item> items)
+    public static void CheapPriceCalculator(Dictionary<char, Item> itemLookup)
     {
         // convert to list of items
-        var list = items.Values.ToList();
-        
+        var items = itemLookup.Values.ToList();
+
         // apply promotions
-        var itemsWithPromotion = ApplyPromotionalPricing(list);
-        
+        var itemsWithPromotion = ApplyPromotionalPricing(items);
+
         // calculate total price
         decimal totalPrice = itemsWithPromotion.Sum(tuple => tuple.Price);
-        
+
         // print total price
         Console.WriteLine($"Total price: {totalPrice}");
     }
 
-    public static void ExpensivePriceCalculator(Dictionary<char, Item> items)
+    public static void ExpensivePriceCalculator(Dictionary<char, Item> itemLookup)
     {
-        // var groupedItems = items.GroupBy(item => item.Group)
-        //     .Select(group => new { Group = group.Key, TotalQuantity = group.Count() })
-        //     .OrderBy(g => g.Group);
-        //
-        // foreach (var group in groupedItems)
-        // {
-        //     Console.WriteLine($"Group: {group.Group}, Quantity: {group.TotalQuantity}");
-        // }
+        // Convert to list of items
+        var items = itemLookup.Values.ToList();
+
+        // Apply promotions
+        List<(Item item, decimal PromotionalPrice)> itemsWithPromotion = ApplyPromotionalPricing(items);
+
+        // Create a dictionary from the list with promotional prices for easy access
+        var promoPriceDict = itemsWithPromotion.ToDictionary(promo => promo.item.Code, promo => promo.PromotionalPrice);
+
+        // Group by item group
+        var groupedItems = items
+            .GroupBy(item => item.Group)
+            .OrderBy(g => g.Key);
+
+        // Output the results
+        Console.WriteLine("--------------------------------------------------");
+        decimal totalPrice = 0;
+        foreach (var group in groupedItems)
+        {
+            Console.WriteLine($"Group: {group.Key}");
+            decimal groupTotalPrice = 0;
+
+            foreach (var item in group)
+            {
+                decimal price = promoPriceDict.ContainsKey(item.Code) ? promoPriceDict[item.Code] : item.Price;
+                decimal totalPriceForItem = price * item.Quantity;
+                groupTotalPrice += totalPriceForItem;
+
+                // Formatting individual item output
+                Console.WriteLine($"Item '{item.Code}', Qty: {item.Quantity}, Price: {totalPriceForItem:F2} kr");
+            }
+
+            // Formatting group total output
+            Console.WriteLine($"\nGroup Total - Items: {group.Sum(i => i.Quantity)}, Price: {groupTotalPrice:F2} kr");
+            Console.WriteLine("--------------------------------------------------");
+            totalPrice += groupTotalPrice;
+        }
+
+        // Formatting grand total output
+        Console.WriteLine($"Grand Total: {totalPrice:F2} kr");
     }
 
     private static List<(Item, decimal Price)> ApplyPromotionalPricing(List<Item> items)
@@ -61,8 +93,9 @@ public class PriceCalculator
                     int fullSets = item.Quantity / quantityDiscountPromotion.QuantityBought;
                     // remaining items that do not qualify for promotion
                     int remainingItems = item.Quantity % quantityDiscountPromotion.QuantityBought;
-                    
-                    price = (fullSets * quantityDiscountPromotion.QuantityCharged * item.Price) + (remainingItems * item.Price);
+
+                    price = (fullSets * quantityDiscountPromotion.QuantityCharged * item.Price) +
+                            (remainingItems * item.Price);
                 }
             }
 
@@ -71,9 +104,9 @@ public class PriceCalculator
 
         return itemsWithPromotion;
     }
-    
-    // ### promotions tables ###
-    
+
+    // ### promotions dictionary ###
+
     // buy number of items for price
     private static Dictionary<char, (int QuantityForPromotion, decimal PromotionalPrice)> SpecialPricePromotions =
         new Dictionary<char, (int, decimal)>

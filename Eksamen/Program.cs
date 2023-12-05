@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 
 // Delegate type for price calculation methods
-public delegate void PriceCalculationDelegate(Dictionary<char, Item> items);
+public delegate void PriceCalculationDelegate(Dictionary<char, Item> itemLookup);
 
 class MainProgram
 {
@@ -39,13 +39,19 @@ class MainProgram
                     item = new Item { Code = input, Group = 1, Price = 100.0m, Quantity = 1 };
                     break;
                 case 'b':
-                    item = new Item { Code = input, Group = 1, Price = 2.0m, Quantity = 1 };
+                    item = new Item { Code = input, Group = 2, Price = 2.0m, Quantity = 1 };
+                    break;
+                case 'c':
+                    item = new Item { Code = input, Group = 2, Price = 3.0m, Quantity = 6 };
                     break;
                 case 'r': // multi-pack
-                    item = new Item { Code = 'f', Group = 1, Price = 6.0m, Quantity = 6 };
+                    item = new Item { Code = 'f', Group = 1, Price = 10.0m, Quantity = 6 };
                     break;
                 case 'f': // part of multi-pack
-                    item = new Item { Code = input, Group = 1, Price = 6.0m, Quantity = 1 };
+                    item = new Item { Code = input, Group = 1, Price = 10.0m, Quantity = 1 };
+                    break;
+                case 'p': // deposit TODO ask about the functionality of this?
+                    item = new Item { Code = input, Group = 0, Price = -1.0m, Quantity = 1 };
                     break;
                 default:
                     // todo fix item code to value conversion
@@ -56,10 +62,8 @@ class MainProgram
             // Add item to dictionary
             if (scannedItems.ContainsKey(item.Code))
             {
-                Console.WriteLine($"Item {item.Code} already scanned, incrementing quantity");
-                scannedItems[item.Code].Quantity++;
-
-                Console.WriteLine($"scannedItems[item.Code] = {scannedItems[item.Code].Quantity}");
+                scannedItems[item.Code].Quantity += item.Quantity;
+                Console.WriteLine($"'{item.Code}' = {scannedItems[item.Code].Quantity}");
             }
             else
             {
