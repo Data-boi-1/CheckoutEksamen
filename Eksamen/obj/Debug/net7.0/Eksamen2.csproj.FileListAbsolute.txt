@@ -1,0 +1,14 @@
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\bin\Debug\net7.0\Eksamen2.exe
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\bin\Debug\net7.0\Eksamen2.deps.json
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\bin\Debug\net7.0\Eksamen2.runtimeconfig.json
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\bin\Debug\net7.0\Eksamen2.dll
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\bin\Debug\net7.0\Eksamen2.pdb
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.AssemblyInfoInputs.cache
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.AssemblyInfo.cs
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.csproj.CoreCompileInputs.cache
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.dll
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\refint\Eksamen2.dll
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.pdb
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\Eksamen2.genruntimeconfig.cache
+C:\Users\danie\UNRAID_SHARE\RiderProjects\Eksamen2\Eksamen2\obj\Debug\net7.0\ref\Eksamen2.dll
