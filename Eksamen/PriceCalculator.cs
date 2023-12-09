@@ -43,8 +43,8 @@ public class PriceCalculator
 
             foreach (var item in group)
             {
-                decimal price = promoPriceDict.ContainsKey(item.Code) ? promoPriceDict[item.Code] : item.Price;
-                decimal totalPriceForItem = price * item.Quantity;
+                // Use PromotionalPrice lookup to get the price for item category
+                decimal totalPriceForItem = promoPriceDict[item.Code];
                 groupTotalPrice += totalPriceForItem;
 
                 // Formatting individual item output
@@ -60,6 +60,8 @@ public class PriceCalculator
         // Formatting grand total output
         Console.WriteLine($"Grand Total: {totalPrice:F2} kr");
     }
+
+
 
     private static List<(Item, decimal Price)> ApplyPromotionalPricing(List<Item> items)
     {
@@ -111,7 +113,7 @@ public class PriceCalculator
     private static Dictionary<char, (int QuantityForPromotion, decimal PromotionalPrice)> SpecialPricePromotions =
         new Dictionary<char, (int, decimal)>
         {
-            { 'a', (2, 80m) }, // Buy 2 for 80 kr
+            { 'a', (2, 180m) }, // Buy 2 for 180 kr
         };
 
     // buy x number of items for y number of items

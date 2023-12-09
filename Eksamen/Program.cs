@@ -42,7 +42,7 @@ class MainProgram
                     item = new Item { Code = input, Group = 2, Price = 2.0m, Quantity = 1 };
                     break;
                 case 'c':
-                    item = new Item { Code = input, Group = 2, Price = 3.0m, Quantity = 6 };
+                    item = new Item { Code = input, Group = 2, Price = 3.0m, Quantity = 1 };
                     break;
                 case 'r': // multi-pack
                     item = new Item { Code = 'f', Group = 1, Price = 10.0m, Quantity = 6 };
