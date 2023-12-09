@@ -1,8 +1,8 @@
 # Start applikationen og du scanner varer 1 af gangen.
-Du kan indtaste a-z(småt) for varer og stopper ved Q
-Der bliver udskrevet en kvittering i terminalen/konsollen.
+- Du kan indtaste a-z(småt) for varer og stopper ved Q
+- Der bliver udskrevet en kvittering i terminalen/konsollen.
 
-Beskrivelse:
+## Beskrivelse:
 
 I kassen i supermarkedet bliver varer scannet ind og priserne bliver beregnet. Varerne scannes på baggrund af en EAN-kode, men i denne opgave kalder vi dem bare ved et bogstav ‘A’ til ‘Z’ for at gøre det nemmere.
 
